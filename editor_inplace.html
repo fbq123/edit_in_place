@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div id="box">
+      <div>
+      <span v-bind:style="{display:showText}" @click="edit">{{content}}</span>
+      <input v-model="content" :style="{display:showInput}">
+      <input type="button" value="保存" :style="{display:showInput}" @click="save">
+      <input type="button" value="取消" :style="{display:showInput}" @click="cancel">
+    </div>
+  </div>
+</div>
+  <script src="http://cdn.bootcss.com/vue/2.0.0-rc.1/vue.min.js"></script>
+  <script>
+    let vm = new Vue({
+      el:'#app',
+      data:{
+        showText:"inline",
+        showInput:"none",
+        content:"无名氏",
+        oldValue:""
+      },
+      methods:{
+        edit:function(){
+          this.showText="none";
+          this.showInput="inline";
+          this.oldValue = this.content;
+        },
+        save:function(){
+          this.showText="inline";
+          this.showInput="none";
+        },
+        cancel:function(){
+          this.showText="inline";
+          this.showInput="none";
+          this.content = this.oldValue;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
